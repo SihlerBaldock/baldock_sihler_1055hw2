@@ -29,6 +29,9 @@ function dropped(e) {
     //if this dropzone has a child, don't let it drop
     //use a return statement
 
+    //The first bug was already solved in class, but it involved adding this return statement so that only one draggable element can be placed into each drop zone, because previously multiple elements could be placed into the dropzones. The return statement below solved the bug:
+
+    
     if(this.children.length>=1) {
         return;
     }
