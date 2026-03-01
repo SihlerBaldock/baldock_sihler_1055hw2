@@ -9,6 +9,11 @@ let currentDraggedElement = null;
 //add variable for label box
 
 
+//Added variables for reset button and label box because they will both be used when resetting the puzzle.
+const reset = document.querySelector(".reset-btn");
+const labelsBox = document.querySelector(".labels-box");
+
+
 // Functions
 function dragStart() {
     console.log("Started Dragging");
@@ -44,6 +49,20 @@ function dropped(e) {
     currentDraggedElement = null;
 }
 
+//This function resets the puzzle, and the key is the appendChild, because it tells the browser to take the element inside of the drop zone and place it back into the labels box.
+function resetPuzzle() {
+    console.log("Reset Button Clicked");
+
+    targetZones.forEach(zone => {
+        if(zone.children.length > 0) {
+            const label = zone.children[0];
+            labelsBox.appendChild(label);
+        }
+    });
+
+    currentDraggedElement = null;
+}
+
 // function reset() {
     //collect all the labels and put them back 
     //check all target zones / loop through them, see IF the dropzone has a label i it, if it does, add that label back to the pieces
@@ -60,3 +79,9 @@ targetZones.forEach(zone => {
     zone.addEventListener("dragover", dragOver);
     zone.addEventListener("drop", dropped);
 });
+
+
+//added an EventListener to tell the browser that when the reset button is clicked, call a function named resetPuzzle.
+reset.addEventListener("click", resetPuzzle);
+
+
